@@ -30,8 +30,8 @@ export class PaymentsService {
       // es un arreglo para colocar los items de mi orden
       line_items: lineItems,
       mode: 'payment',
-      success_url: 'http://localhost:3003/payments/success',
-      cancel_url: 'http://localhost:3003/payments/cancel',
+      success_url: envs.stripeSuccessUrl,
+      cancel_url: envs.stripeCancelUrl,
     });
     return session;
   }
@@ -40,7 +40,7 @@ export class PaymentsService {
     const sig = req.headers['stripe-signature'];
     if (!sig) throw new Error('Falta la cabecera stripe-signature');
     let event: Stripe.Event;
-    const endpointSecret = 'whsec_JfTfSpFB6ofU5W7PeiomMnG44iwCZHKv';
+    const endpointSecret = envs.stripeEndpointSecret;
     try {
       event = this.stripe.webhooks.constructEvent(
         req['rawBody'],

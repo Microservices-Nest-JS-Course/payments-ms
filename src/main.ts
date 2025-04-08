@@ -14,7 +14,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  await app.listen(envs.port ?? 3003);
-  logger.log(`Payments Microservice running on port ${envs.port}`);
+  await app.listen(envs.paymentMsPort ?? 3003);
+  logger.log(`Payments Microservice running on port ${envs.paymentMsPort}`);
 }
 bootstrap();

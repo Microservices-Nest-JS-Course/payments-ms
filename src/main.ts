@@ -32,8 +32,8 @@ async function bootstrap() {
   );
 
   await app.startAllMicroservices();
-
   await app.listen(envs.paymentMsPort ?? 3003);
+  console.log('Health check configured');
   logger.log(`Payments Microservice running on port ${envs.paymentMsPort}`);
 }
 bootstrap();
